@@ -41,5 +41,5 @@ of the following 3 datasets:
 * `cs18k`: Social Integration and Leisure from October 2018
 
 ### License
-
-<license goes here>
+[![License: 
+MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
