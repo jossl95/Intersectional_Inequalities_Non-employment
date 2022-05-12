@@ -1,8 +1,8 @@
 # Intersectionele sekse- en herkomstverschillen in niet-werken
-## Een 
-verklaring op basis van sociaal kapitaal
+## Een verklaring op basis van sociaal kapitaal
 
-> *English Title:* Intersectional sex and country of origin differences in 
+**English Title**
+> Intersectional sex and country of origin differences in 
 non-employment: an explanation based on social capital.
 
 by: 
