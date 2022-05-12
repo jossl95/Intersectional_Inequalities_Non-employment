@@ -3,5 +3,6 @@
 /_archive*
 
 .sps
+.Rhistory
 
 
