@@ -1,5 +1,5 @@
-# Intersectionele sekse- en herkomstverschillen in niet-werken
-## Een verklaring op basis van sociaal kapitaal
+# Intersectionele sekse- en herkomstverschillen in niet-werken: Een 
+verklaring op basis van sociaal kapitaal
 
 **English Title**
 > Intersectional sex and country of origin differences in 
@@ -31,6 +31,15 @@ of being non-employed. Moreover, we find that people from certain social
 groups have a higher chance of being unemployed. For women with a western 
 migration background we find that a part of the higher risk for 
 non-employment can be attributed to a lack of social capital.
+
+### Data
+For this paper we used LISS panel data, which are made available to 
+researcher by CenterData free of charge. For more information click 
+[here](https://www.lissdata.nl/about-panel). In our analyses we made use 
+of the following 3 datasets:
+* `avars_201810`: Background variables from October 2018
+* `avars_201910`: Background variables from October 2019
+* `cs18k`: Social Integration and Leisure from October 2018
 
 ### License
 
