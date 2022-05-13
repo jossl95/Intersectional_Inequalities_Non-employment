@@ -27,7 +27,7 @@ social ties are currently active in the labour market. We estimated
 structural equation models using data from the LISS-panel. We find that 
 having fewer ties that have paid employment is linked to a higher chance 
 of being non-employed. Moreover, we find that people from certain social 
-groups have a higher chance of being unemployed. For women with a western 
+groups have a higher chance of being unemployed. For women with a non-western 
 migration background we find that a part of the higher risk for 
 non-employment can be attributed to a lack of social capital.
 
