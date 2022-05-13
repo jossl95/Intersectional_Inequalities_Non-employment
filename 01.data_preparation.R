@@ -14,9 +14,19 @@
 library(tidyverse)
 library(haven)
 
+# make directory if not existent
+conditional_make_dir <- function(path){
+  if(!file.exists(path)){
+    dir.create(path, showWarnings = FALSE)
+  }
+}
+
 #------------------------------------------------------------------------------
 # load data
 #------------------------------------------------------------------------------
+
+conditional_make_dir("./data")
+
 # background variables 2018
 avars18 <- haven::read_spss('./data/avars_201810_EN_1.0p.sav',
                             col_select = c(nomem_encr, geslacht, herkomstgroep, 
@@ -76,7 +86,8 @@ avars19 <- avars19 %>%
          unemp = haven::labelled(ifelse(belbezig %in% c(4, 5, 8, 11), 1, 
                                     ifelse(belbezig %in% c(1, 2, 3), 0, NA)),
                                  c(employed = 0, unemployed = 1))) %>% 
-  select(nomem_encr, robfilter, unemp)
+  select(nomem_encr, robfilter, unemp) %>% 
+  drop_na()
 
 # get descriptives of avars before listwise deletion 
 desc_avars_19 <- avars19 %>% 
@@ -121,12 +132,14 @@ df %>% write_sav(., './data/merged.sav')
 #------------------------------------------------------------------------------
 # Missing data analyses
 #------------------------------------------------------------------------------
-
-# people in sample have more working contacts
-t.test(numwork, mu = mean(cs$numwork), data=df)
+# lazy loading data
+attach(df)
 
 # people in sample have are not more unemployed
-t.test(unemp, mu = mean(avars19$unemp), data=df)
+t.test(unemp, mu = mean(avars19$unemp))
+
+# people in sample have more working contacts
+t.test(numwork, mu = mean(cs$numwork))
 
 # there is no disproportionate missingness among people with a western
 # and non western migration background

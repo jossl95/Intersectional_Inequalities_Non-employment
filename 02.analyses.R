@@ -3,7 +3,7 @@
 # Intersectionele sekse- en herkomstverschillen in niet-werken:Een verklaring 
 # op basis van sociaal kapitaal.
 #
-# SCRIPT: Data Preparation
+# SCRIPT: Analyses
 #
 # DATE: 09/05/2022
 # NAME:
@@ -21,21 +21,26 @@ library(semTable)
 library(psych)
 library(tidyverse)
 
+# make directory if not existent
+conditional_make_dir <- function(path){
+  if(!file.exists(path)){
+    dir.create(path, showWarnings = FALSE)
+  }
+}
+
 #------------------------------------------------------------------------------
 # load data
-dir.create("./data", showWarnings = FALSE)
-LISS <- haven::read_sav("./data/merged.sav")
+LISS <- haven::read_sav("data/merged.sav")
 
 # descriptive statistics
 LISS %>% 
-  select(unemp, female, dutch, west, nonwest, numwork, numcon, age, child) %>% 
-  summary()
+  select(unemp, female, dutch, west, nonwest, 
+         numwork, numcon, age, child, educ) %>% 
+  describe() %>%  print(., digits=3)
 
 #correlation matrix
 corrmat <- round(cor(LISS),3)
-psych::corr.test(corrmat) #correlation matrix all variables
-psych::corr.test(corrmat, method = "pearson")
-psych::corr.test(corrmat, method = "spearman")
+psych::corr.test(corrmat, method = "pearson") %>%  print(., digits=3)
 
 #-----------------------------------------------------------------------------
 # model specification
@@ -191,7 +196,7 @@ mods = list(
   "5" = fit_mod5_bs
 )
 
-dir.create("./results", showWarnings = FALSE)
+conditional_make_dir("./results")
 semTable(
   mods,
   columns=c("estsestars", "p"), columnLabels=c('estsestars' = "Estimate(Std. Err.)"), 
@@ -208,27 +213,27 @@ ROB <- LISS %>%
 summary(ROB)
 
 # model 0
-fit_mod0r <- sem(model0, data = ROB)
-summary(fit_mod0ra, fit.measures = TRUE)
+fit_mod0r <- sem(model0, data = ROB, se = "bootstrap", bootstrap = k)
+summary(fit_mod0r, fit.measures = TRUE)
 
 # model 1
-fit_mod1r <- sem(model1, data = ROB)
+fit_mod1r <- sem(model1, data = ROB, se = "bootstrap", bootstrap = k)
 summary(fit_mod1r, fit.measures = TRUE)
 
 # model 2
-fit_mod2r <- sem(model2, data = ROB)
+fit_mod2r <- sem(model2, data = ROB, se = "bootstrap", bootstrap = k)
 summary(fit_mod2r, fit.measures = TRUE)
 
 # model 3
-fit_mod3r <- sem(model3, data = ROB)
+fit_mod3r <- sem(model3, data = ROB, se = "bootstrap", bootstrap = k)
 summary(fit_mod3r, fit.measures = TRUE)
 
 # model 4
-fit_mod4r <- sem(model4, data = ROB)
+fit_mod4r <- sem(model4, data = ROB, se = "bootstrap", bootstrap = k)
 summary(fit_mod4r, fit.measures = TRUE)
 
 # model 5
-fit_mod5r <- sem(model5, data = ROB)
+fit_mod5r <- sem(model5, data = ROB, se = "bootstrap", bootstrap = k)
 summary(fit_mod5r, fit.measures = TRUE)
 
 mods = list(
