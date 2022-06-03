@@ -27,7 +27,6 @@ conditional_make_dir <- function(path){
     dir.create(path, showWarnings = FALSE)
   }
 }
-
 #------------------------------------------------------------------------------
 # load data
 LISS <- haven::read_sav("data/merged.sav")
@@ -159,6 +158,7 @@ model5 <- '#direct effects
 ## Run models using a 1000-fold bootstrap 
 #-----------------------------------------------------------------------------
 k = 1000
+set.seed(291)
 
 # model 0
 fit_mod0_bs <- sem(model0, data = LISS, se = "bootstrap", bootstrap = k)
@@ -199,7 +199,8 @@ mods = list(
 conditional_make_dir("./results")
 semTable(
   mods,
-  columns=c("estsestars", "p"), columnLabels=c('estsestars' = "Estimate(Std. Err.)"), 
+  columns=c("estsestars", "p"), 
+  columnLabels=c('estsestars' = "Estimate(Std. Err.)"), 
   type="csv",
   file='./results/bootstrap.csv'
 )
@@ -247,7 +248,8 @@ mods = list(
 
 semTable(
   mods,
-  columns=c("estsestars", "p"), columnLabels=c('estsestars' = "Estimate(Std. Err.)"), 
+  columns=c("estsestars", "p"), 
+  columnLabels=c('estsestars' = "Estimate(Std. Err.)"), 
   type="csv",
   file='./results/robustness.csv'
 )

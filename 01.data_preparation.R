@@ -71,6 +71,11 @@ desc_avars_18 <- avars18 %>%
   select(female, west, nonwest) %>% 
   summary()
 
+# average per social group
+m.female  <- mean(avars18$female)
+m.west    <- mean(avars18$west, na.rm=TRUE)
+m.nonwest <- mean(avars18$nonwest, na.rm=TRUE)
+
 # listwise deletion
 n_before = nrow(avars18)
 avars18 <- avars18 %>% drop_na()
@@ -143,10 +148,10 @@ t.test(numwork, mu = mean(cs$numwork))
 
 # there is no disproportionate missingness among people with a western
 # and non western migration background
-t.test(west, mu = mean(avars18$west), data=df)
-t.test(nonwest, mu = mean(avars18$nonwest), data=df)
+t.test(west, mu = m.west, data=df)
+t.test(nonwest, mu = m.nonwest, data=df)
 
 # women were more likely to not be sample in our sample selection procedure
-t.test(female, mu = mean(avars18$female), data=df)
+t.test(female, mu = m.female, data=df)
 
 # END
