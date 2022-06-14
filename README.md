@@ -43,4 +43,4 @@ of the following 3 datasets:
 ### License
 [![License: 
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.4018965.svg)](https://zenodo.org/badge/DOI/10.5281/zenodo.6641635.svg)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6641635.svg)](https://doi.org/10.5281/zenodo.6641635)
